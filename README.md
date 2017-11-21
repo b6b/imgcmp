@@ -1,0 +1,2 @@
+# imgcmp
+Simple image comparison
