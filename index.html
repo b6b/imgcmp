@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>imgcmp</title>
+<meta charset="UTF-8">
+<meta name="description" content="Simple image comparison">
+<link href="assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.19.0/URI.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.8/vue.min.js"></script>
+</head>
+<body>
+
+  <div id="app">
+
+    <div id="home" v-if="!loadComparison">
+      <h1>imgcmp - Simple image comparison</h1>
+
+      <p>
+        <label>Image 1:</label>
+        <input v-model="img1" @keyup.enter="compare">
+      </p>
+
+      <p>
+        <label>Image 2:</label>
+        <input v-model="img2" @keyup.enter="compare">
+      </p>
+
+      <p style="font-size: 12px; font-style: italic;">*imgcmp doesn't host images. Use URLs to already hosted images.</p>
+
+      <p><button @click="compare">Compare images</button></p>
+        
+    </div>
+
+    <div id="comparison" v-else>
+      <div id="imgTitle">
+        <span class="highlight" v-show="!showAlt">Image 1</span>
+        <span class="highlight" v-show="showAlt">Image 2</span>
+      </div>
+
+      <div id="img">
+        <img :src="img1" v-show="!showAlt" @mouseover="showAlt = true" style="border:3px solid #222222">
+        <img :src="img2" v-show="showAlt" @mouseleave="showAlt = false" style="border:3px solid #444444">
+      </div>
+    </div>
+
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
